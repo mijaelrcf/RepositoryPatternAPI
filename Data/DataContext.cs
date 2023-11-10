@@ -21,13 +21,13 @@ namespace RepositoryPatternAPI.Data
             Guid customerId = Guid.NewGuid();
 
             List<Customer> customersInit = new List<Customer>();
-            
-            customersInit.Add(new Customer() 
-            { 
-                Id = customerId, 
-                Name = "Mijael Callejas", 
-                Email = "mijael.rcf@gmail", 
-                Address = "Street 13" 
+
+            customersInit.Add(new Customer()
+            {
+                Id = customerId,
+                Name = "Mijael Callejas",
+                Email = "mijael.rcf@gmail",
+                Address = "Street 13"
             });
 
             modelBuilder.Entity<Customer>(customer =>
@@ -40,9 +40,9 @@ namespace RepositoryPatternAPI.Data
             Guid accountId = Guid.NewGuid();
             Guid account2Id = Guid.NewGuid();
 
-            accountsInit.Add(new Account() { Id = accountId, AccountNumber = 201000001, CreationDate = DateTime.Now });
-            accountsInit.Add(new Account() { Id = account2Id, AccountNumber = 201000002, CreationDate = DateTime.Now });
-            
+            accountsInit.Add(new Account() { Id = accountId, AccountNumber = 201000001, CreationDate = DateTime.Now, CustomerId = customerId });
+            accountsInit.Add(new Account() { Id = account2Id, AccountNumber = 201000002, CreationDate = DateTime.Now, CustomerId = customerId });
+
             modelBuilder.Entity<Account>(account =>
             {
                 account.HasData(accountsInit);
@@ -60,10 +60,10 @@ namespace RepositoryPatternAPI.Data
 
             List<Transaction> transactionsInit = new List<Transaction>();
 
-            transactionsInit.Add(new Transaction() { Id = Guid.NewGuid(), Amount = 100, AccountId = accountId, TransactionDate = DateTime.Now, Type = 'D'});
-            transactionsInit.Add(new Transaction() { Id = Guid.NewGuid(), Amount = 200, AccountId = accountId, TransactionDate = DateTime.Now, Type = 'C' });
-            transactionsInit.Add(new Transaction() { Id = Guid.NewGuid(), Amount = 150, AccountId = account2Id, TransactionDate = DateTime.Now, Type = 'D' });
-            transactionsInit.Add(new Transaction() { Id = Guid.NewGuid(), Amount = 350, AccountId = account2Id, TransactionDate = DateTime.Now, Type = 'C' });
+            transactionsInit.Add(new Transaction() { Id = Guid.NewGuid(), Amount = 100, AccountId = accountId, TransactionDate = DateTime.Now, Type = 'D', CardNumber = 700000001 });
+            transactionsInit.Add(new Transaction() { Id = Guid.NewGuid(), Amount = 200, AccountId = accountId, TransactionDate = DateTime.Now, Type = 'C', CardNumber = 700000001 });
+            transactionsInit.Add(new Transaction() { Id = Guid.NewGuid(), Amount = 150, AccountId = account2Id, TransactionDate = DateTime.Now, Type = 'D', CardNumber = 700000002 });
+            transactionsInit.Add(new Transaction() { Id = Guid.NewGuid(), Amount = 350, AccountId = account2Id, TransactionDate = DateTime.Now, Type = 'C', CardNumber = 700000002 });
 
             modelBuilder.Entity<Transaction>(transaction =>
             {

@@ -34,22 +34,29 @@ namespace RepositoryPatternAPI.Migrations
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<Guid>("CustomerId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("CustomerId");
 
                     b.ToTable("Accounts");
 
                     b.HasData(
                         new
                         {
-                            Id = new Guid("d13ce4bf-7d58-407f-8a2d-22c7db3acd53"),
+                            Id = new Guid("c3f6784d-329c-4f30-9b1c-e808a74a4241"),
                             AccountNumber = 201000001,
-                            CreationDate = new DateTime(2023, 11, 9, 17, 29, 56, 24, DateTimeKind.Local).AddTicks(6147)
+                            CreationDate = new DateTime(2023, 11, 10, 11, 18, 41, 904, DateTimeKind.Local).AddTicks(3147),
+                            CustomerId = new Guid("14b579b9-1eef-4bc6-8c36-881c1e9583c0")
                         },
                         new
                         {
-                            Id = new Guid("bb2dbef0-0012-4a09-942b-b3c8c1063ddf"),
+                            Id = new Guid("5c3c785f-7299-4733-90ee-276ddda46d71"),
                             AccountNumber = 201000002,
-                            CreationDate = new DateTime(2023, 11, 9, 17, 29, 56, 24, DateTimeKind.Local).AddTicks(6157)
+                            CreationDate = new DateTime(2023, 11, 10, 11, 18, 41, 904, DateTimeKind.Local).AddTicks(3159),
+                            CustomerId = new Guid("14b579b9-1eef-4bc6-8c36-881c1e9583c0")
                         });
                 });
 
@@ -77,15 +84,15 @@ namespace RepositoryPatternAPI.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("2852414c-0c75-4357-ba2d-1fa145203f33"),
-                            AccountId = new Guid("d13ce4bf-7d58-407f-8a2d-22c7db3acd53"),
+                            Id = new Guid("2965478f-c14c-4f20-8204-727ccca8da59"),
+                            AccountId = new Guid("c3f6784d-329c-4f30-9b1c-e808a74a4241"),
                             CardNumber = 700000001,
                             CreationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
-                            Id = new Guid("cfef36f9-445c-4e53-b880-63f7d45c1060"),
-                            AccountId = new Guid("bb2dbef0-0012-4a09-942b-b3c8c1063ddf"),
+                            Id = new Guid("66354dfb-1e4a-4286-a889-d1d89ba2c2d8"),
+                            AccountId = new Guid("5c3c785f-7299-4733-90ee-276ddda46d71"),
                             CardNumber = 700000002,
                             CreationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
@@ -119,7 +126,7 @@ namespace RepositoryPatternAPI.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("7b1fdcfb-6500-46ed-991a-1c1e2450251d"),
+                            Id = new Guid("14b579b9-1eef-4bc6-8c36-881c1e9583c0"),
                             Address = "Street 13",
                             CreationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "mijael.rcf@gmail",
@@ -138,6 +145,9 @@ namespace RepositoryPatternAPI.Migrations
 
                     b.Property<double>("Amount")
                         .HasColumnType("float");
+
+                    b.Property<int>("CardNumber")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime2");
@@ -158,40 +168,53 @@ namespace RepositoryPatternAPI.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("37f9f422-d0e9-43b8-8edc-a61709f91535"),
-                            AccountId = new Guid("d13ce4bf-7d58-407f-8a2d-22c7db3acd53"),
+                            Id = new Guid("0600c3a2-2cf2-4aa8-955d-c8c2629da073"),
+                            AccountId = new Guid("c3f6784d-329c-4f30-9b1c-e808a74a4241"),
                             Amount = 100.0,
+                            CardNumber = 700000001,
                             CreationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            TransactionDate = new DateTime(2023, 11, 9, 17, 29, 56, 24, DateTimeKind.Local).AddTicks(6211),
+                            TransactionDate = new DateTime(2023, 11, 10, 11, 18, 41, 904, DateTimeKind.Local).AddTicks(3221),
                             Type = "D"
                         },
                         new
                         {
-                            Id = new Guid("82e8796c-6714-433c-83f3-9bda358104b2"),
-                            AccountId = new Guid("d13ce4bf-7d58-407f-8a2d-22c7db3acd53"),
+                            Id = new Guid("d8a78ade-0905-4d7a-b8d8-9194ca972ca1"),
+                            AccountId = new Guid("c3f6784d-329c-4f30-9b1c-e808a74a4241"),
                             Amount = 200.0,
+                            CardNumber = 700000001,
                             CreationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            TransactionDate = new DateTime(2023, 11, 9, 17, 29, 56, 24, DateTimeKind.Local).AddTicks(6215),
+                            TransactionDate = new DateTime(2023, 11, 10, 11, 18, 41, 904, DateTimeKind.Local).AddTicks(3225),
                             Type = "C"
                         },
                         new
                         {
-                            Id = new Guid("0f4dcd2c-a06e-44da-8fbe-bdb4fd5e478f"),
-                            AccountId = new Guid("bb2dbef0-0012-4a09-942b-b3c8c1063ddf"),
+                            Id = new Guid("f00bf369-5382-4138-9824-fb7604227944"),
+                            AccountId = new Guid("5c3c785f-7299-4733-90ee-276ddda46d71"),
                             Amount = 150.0,
+                            CardNumber = 700000002,
                             CreationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            TransactionDate = new DateTime(2023, 11, 9, 17, 29, 56, 24, DateTimeKind.Local).AddTicks(6218),
+                            TransactionDate = new DateTime(2023, 11, 10, 11, 18, 41, 904, DateTimeKind.Local).AddTicks(3228),
                             Type = "D"
                         },
                         new
                         {
-                            Id = new Guid("51e3add7-ce46-492c-92c7-4b48b9c6163f"),
-                            AccountId = new Guid("bb2dbef0-0012-4a09-942b-b3c8c1063ddf"),
+                            Id = new Guid("10da1618-5f14-45b5-bfd1-4501f2d43d3c"),
+                            AccountId = new Guid("5c3c785f-7299-4733-90ee-276ddda46d71"),
                             Amount = 350.0,
+                            CardNumber = 700000002,
                             CreationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            TransactionDate = new DateTime(2023, 11, 9, 17, 29, 56, 24, DateTimeKind.Local).AddTicks(6222),
+                            TransactionDate = new DateTime(2023, 11, 10, 11, 18, 41, 904, DateTimeKind.Local).AddTicks(3232),
                             Type = "C"
                         });
+                });
+
+            modelBuilder.Entity("RepositoryPatternAPI.Models.Account", b =>
+                {
+                    b.HasOne("RepositoryPatternAPI.Models.Customer", null)
+                        .WithMany("Accounts")
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("RepositoryPatternAPI.Models.Card", b =>
@@ -221,6 +244,11 @@ namespace RepositoryPatternAPI.Migrations
                     b.Navigation("Cards");
 
                     b.Navigation("Transactions");
+                });
+
+            modelBuilder.Entity("RepositoryPatternAPI.Models.Customer", b =>
+                {
+                    b.Navigation("Accounts");
                 });
 #pragma warning restore 612, 618
         }

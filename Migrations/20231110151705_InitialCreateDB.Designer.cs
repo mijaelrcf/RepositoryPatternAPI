@@ -12,8 +12,8 @@ using RepositoryPatternAPI.Data;
 namespace RepositoryPatternAPI.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20231109001249_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20231110151705_InitialCreateDB")]
+    partial class InitialCreateDB
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -37,7 +37,12 @@ namespace RepositoryPatternAPI.Migrations
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<Guid>("CustomerId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("CustomerId");
 
                     b.ToTable("Accounts");
                 });
@@ -102,6 +107,9 @@ namespace RepositoryPatternAPI.Migrations
                     b.Property<double>("Amount")
                         .HasColumnType("float");
 
+                    b.Property<int>("CardNumber")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime2");
 
@@ -117,6 +125,15 @@ namespace RepositoryPatternAPI.Migrations
                     b.HasIndex("AccountId");
 
                     b.ToTable("Transactions");
+                });
+
+            modelBuilder.Entity("RepositoryPatternAPI.Models.Account", b =>
+                {
+                    b.HasOne("RepositoryPatternAPI.Models.Customer", null)
+                        .WithMany("Accounts")
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("RepositoryPatternAPI.Models.Card", b =>
@@ -146,6 +163,11 @@ namespace RepositoryPatternAPI.Migrations
                     b.Navigation("Cards");
 
                     b.Navigation("Transactions");
+                });
+
+            modelBuilder.Entity("RepositoryPatternAPI.Models.Customer", b =>
+                {
+                    b.Navigation("Accounts");
                 });
 #pragma warning restore 612, 618
         }
